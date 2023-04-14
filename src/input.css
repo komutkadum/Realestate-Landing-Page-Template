@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-border: #dbe4e9;
+  --bg-primary: #e67e22;
+}
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.smol-sidebar {
+  display: grid;
+  grid-template-columns: minmax(min(50vw, 30ch), 1fr) fit-content(20ch);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  border-bottom: 1px solid var(--bg-border);
+}
+
+nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+nav > ul > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  column-gap: 3px;
+  padding: 10px 0.3vw;
+  cursor: pointer;
+  border-left: 1px solid var(--bg-border);
+
+  transition: all ease-in-out 0.4s;
+}
+nav > ul > a:hover:not(.active) {
+  background-color: var(--bg-border);
+}
+
+.overview {
+  padding-block: 40px;
+}
+.overview > h1 {
+  font-weight: bold;
+}
+.overview > h3 {
+  font-weight: 600;
+}
+.overview > p {
+  color: black;
+}
+.overview > button {
+  display: flex;
+  column-gap: 4px;
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 8px 60px;
+  border: 1px solid var(--bg-primary);
+}
+
+.price {
+  padding-block: 40px;
+}
+.price .right > img {
+  width: 100%;
+  height: auto;
+}
+.price .right > button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--bg-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.site-and-floor-plans {
+  padding-block: 40px;
+}
+
+.site-and-floor-plans > .floor-plan {
+  --min: 15ch;
+  display: grid;
+  column-gap: 1.5rem;
+  /* grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr)); */
+}
+
+.site-and-floor-plans > .floor-plan > div {
+  display: grid;
+  row-gap: 5px;
+  cursor: pointer;
+  padding-block: 10px;
+  border: 1px solid var(--bg-border);
+}
+
+.amenities {
+  padding-block: 40px;
+}
+.amenities > .amenities-box > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--bg-border);
+  border-radius: 10px;
+}
+.amenities > .amenities-box > img {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.location {
+  padding-block: 40px;
+}
+
+/* style tab */
+.tab {
+  overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  color: var(--bg-primary);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  color: var(--bg-primary);
+  font-weight: bold;
+  border-bottom: 1px solid var(--bg-primary);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  border-top: none;
+  padding-block: 10px;
+  animation: fadeEffect 1s;
+}
+
+.location .location-list li {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+.location .location-list li svg {
+  stroke: var(--bg-primary);
+}
+
+.virtual-tour {
+  padding-block: 40px;
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.active {
+  background-color: var(--bg-primary);
+  color: white;
+  font-weight: 600;
+}
+.active > svg {
+  stroke: white;
+}
+
+/* zoom animate */
+.custom-animate-zoom {
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+.custom-animate-swing {
+  animation: swing 2s ease infinite;
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+.button-animation {
+  position: relative;
+  overflow: hidden;
+}
+.button-animation:before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  animation: shine 4s infinite ease-in-out;
+}
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@layer components {
+  .section-border {
+    @apply px-4 border-8 tablet:border-0 tablet:border-b-[15px] tablet:border-r-[15px] border-[var(--bg-border)] tablet:px-[30px];
+  }
+}
